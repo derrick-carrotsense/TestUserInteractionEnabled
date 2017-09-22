@@ -9,17 +9,31 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var blockingView: UIView!
+    @IBOutlet weak var toggle: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        blockingView.backgroundColor = UIColor.red
+        blockingView.isUserInteractionEnabled = false
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func buttonTapped(_ sender: Any) {
+        print("TAP \(Calendar.current.component(.nanosecond, from: Date()))")
     }
-
-
+    
+    @IBAction func toggleUserInteractionEnabled(_ sender: Any) {
+        if blockingView.isUserInteractionEnabled {
+            blockingView.isUserInteractionEnabled = false
+            blockingView.backgroundColor = UIColor.red
+        } else {
+            blockingView.isUserInteractionEnabled = true
+            blockingView.backgroundColor = UIColor.green
+        }
+    }
+    
 }
 
